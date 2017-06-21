@@ -5033,3 +5033,5 @@ const googData = [
     'Close': 614.001035
   }
 ];
+
+export default googData;

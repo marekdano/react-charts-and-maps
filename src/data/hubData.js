@@ -2381,3 +2381,5 @@ const hubData = [
     'Close': 30.1
   }
 ];
+
+export default hubData;
