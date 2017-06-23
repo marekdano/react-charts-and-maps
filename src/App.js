@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import hubData from './data/hubData';
 import googData from './data/googData';
+import Chart from './Chart';
 import * as _ from 'lodash';
 import './App.css';
 
@@ -45,6 +46,7 @@ class App extends Component {
         </div>
         <button type='button' onClick={this.hubSpotSelected}>HubSpot</button>
         <button type='button' onClick={this.googleSelected}>Google</button>
+        <Chart data={this.state.data} title={this.state.title} />
       </div>
     );
   }
