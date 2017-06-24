@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import chart from './chart.js';
 import * as _ from 'lodash';
 
 class Chart extends Component {
@@ -8,6 +9,8 @@ class Chart extends Component {
   componentDidMount() {
     let el = ReactDOM.findDOMNode(this);
 		console.log("el in componentDidMount", el);
+
+		chart.create(el, {}, this.getChartState());
   }
 
   componentDidUpdate() {

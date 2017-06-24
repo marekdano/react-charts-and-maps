@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import hubData from './data/hubData';
 import googData from './data/googData';
-import Chart from './Chart';
+import Chart from './Chart.jsx';
 import * as _ from 'lodash';
 import './App.css';
 
