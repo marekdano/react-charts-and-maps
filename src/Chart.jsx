@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import chart from './chart.js';
 import * as _ from 'lodash';
 
@@ -10,7 +11,10 @@ class Chart extends Component {
     let el = ReactDOM.findDOMNode(this);
 		console.log("el in componentDidMount", el);
 
-		chart.create(el, {}, this.getChartState());
+		chart.create(el, {
+			width: 960,
+			height: 500
+		}, this.getChartState());
   }
 
   componentDidUpdate() {
@@ -34,14 +38,14 @@ class Chart extends Component {
 
   render() {
     return (
-      <div className='chart-div'></div>
+      <div className='chart'></div>
     );
   }
 }
 
 Chart.propTypes = {
-    data: React.PropTypes.array,
-    title: React.PropTypes.string
+    data: PropTypes.array,
+    title: PropTypes.string
 };
 
 export default Chart;
