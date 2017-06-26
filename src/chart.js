@@ -37,10 +37,12 @@ chart.update = (state) => {
 }
 
 chart.draw = function(svg, data, title) {
-	 data.forEach(function(d) {
-      d.Date = parseTime(d.Date);
-      d.Close = +d.Close;
-      return d;
+	this.cleanUp();
+
+	data.forEach(function(d) {
+    d.Date = parseTime(d.Date);
+    d.Close = +d.Close;
+    return d;
   });
 
   x.domain(d3.extent(data, function(d) {  return d.Date; }));
@@ -80,5 +82,12 @@ chart.draw = function(svg, data, title) {
 		.style('font-size', '16px') 
 		.text(title);
 }
+
+chart.cleanUp = function(el) {
+  d3.selectAll('.x-axis').remove();
+	d3.selectAll('.y-axis').remove();
+  d3.selectAll('.chart-title').remove();
+  d3.selectAll('.chart-line').remove();
+};
 
 export default chart;

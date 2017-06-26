@@ -18,6 +18,7 @@ class Chart extends Component {
   }
 
   componentDidUpdate() {
+    chart.update(this.getChartState());
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -34,6 +35,7 @@ class Chart extends Component {
   componentWillUnmount() {
     let el = ReactDOM.findDOMNode(this);
 		console.log("el in componentWillUnmount", el);
+    chart.destroy(el);
   }
 
   render() {
