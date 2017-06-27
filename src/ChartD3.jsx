@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import chart from './chart.js';
+import chart from './chartD3.js';
 import * as _ from 'lodash';
 
-class Chart extends Component {
+class ChartD3 extends Component {
 
   componentDidMount() {
     let el = ReactDOM.findDOMNode(this);
@@ -45,9 +45,9 @@ class Chart extends Component {
   }
 }
 
-Chart.propTypes = {
+ChartD3.propTypes = {
     data: PropTypes.array,
     title: PropTypes.string
 };
 
-export default Chart;
+export default ChartD3;

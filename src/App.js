@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import hubData from './data/hubData';
 import googData from './data/googData';
-import Chart from './Chart.jsx';
+import ChartD3 from './ChartD3.jsx';
 import * as _ from 'lodash';
 import './App.css';
 
@@ -13,38 +13,63 @@ class App extends Component {
     this.state = {
       selected: 0, 
       data: _.cloneDeep(hubData), 
-      title: 'HubSpot Stock'
+      title: 'HubSpot Stock in D3',
+      type: 'd3'
     };
-    this.hubSpotSelected = this.hubSpotSelected.bind(this);
-    this.googleSelected = this.googleSelected.bind(this);
+    this.hubSpotInD3Selected = this.hubSpotInD3Selected.bind(this);
+    this.googleInD3Selected = this.googleInD3Selected.bind(this);
+    this.hubSpotInHighchartSelected = this.hubSpotInHighchartSelected.bind(this);
+    this.googleInHighchartSelected = this.googleInHighchartSelected.bind(this);
   }
 
-  hubSpotSelected() {
+  hubSpotInD3Selected() {
     this.setState({
       selected: 0,
       data: _.cloneDeep(hubData),
-      title: 'HubSpot Stock'
+      title: 'HubSpot Stock in D3',
+      type: 'd3'
     });
   }
 
-  googleSelected() {
+  googleInD3Selected() {
     this.setState({
       selected: 1,
       data: _.cloneDeep(googData),
-      title: 'Google Stock'
+      title: 'Google Stock in D3',
+      type: 'd3'
     });
   }
 
+  hubSpotInHighchartSelected() {
+    console.log("hubSpot In Highchart Selected method");
+  }
+
+  googleInHighchartSelected() {
+    console.log("google In Highchart Selected method");
+  }
+
   render() {
+    let chart;
+    if (this.state.type === 'd3')
+      chart = <ChartD3 data={this.state.data} title={this.state.title} />
+    else if (this.state.type === 'highchart')
+      chart = null
+
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Charts and google maps with React.</h2>
         </div>
-        <button type='button' onClick={this.hubSpotSelected}>HubSpot</button>
-        <button type='button' onClick={this.googleSelected}>Google</button>
-        <Chart data={this.state.data} title={this.state.title} />
+        <button type='button' onClick={this.hubSpotInD3Selected}>HubSpot + D3</button>
+        <button type='button' onClick={this.googleInD3Selected}>Google + D3</button>
+
+        <button type='button' onClick={this.hubSpotInHighchartSelected}>HubSpot + Highchart</button>
+        <button type='button' onClick={this.googleInHighchartSelected}>Google + Highchart</button>
+
+        {chart}
+        
+        
       </div>
     );
   }
