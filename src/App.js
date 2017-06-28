@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import hubData from './data/hubData';
 import googData from './data/googData';
 import ChartD3 from './ChartD3.jsx';
+import ChartHighstock from './ChartHighstock';
 import * as _ from 'lodash';
 import './App.css';
 
@@ -42,10 +43,22 @@ class App extends Component {
 
   hubSpotInHighchartSelected() {
     console.log("hubSpot In Highchart Selected method");
+    this.setState({
+      selected: 2,
+      data: _.cloneDeep(googData),
+      title: 'HubSpot Stock in Highchart',
+      type: 'highchart'
+    });
   }
 
   googleInHighchartSelected() {
     console.log("google In Highchart Selected method");
+    this.setState({
+      selected: 3,
+      data: _.cloneDeep(googData),
+      title: 'Google Stock in Highchart',
+      type: 'highchart'
+    });
   }
 
   render() {
@@ -53,7 +66,7 @@ class App extends Component {
     if (this.state.type === 'd3')
       chart = <ChartD3 data={this.state.data} title={this.state.title} />
     else if (this.state.type === 'highchart')
-      chart = null
+      chart = <ChartHighstock />
 
     return (
       <div className="App">

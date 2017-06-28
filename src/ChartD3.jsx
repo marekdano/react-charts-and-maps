@@ -35,7 +35,7 @@ class ChartD3 extends Component {
   componentWillUnmount() {
     let el = ReactDOM.findDOMNode(this);
 		console.log("el in componentWillUnmount", el);
-    chart.destroy(el);
+    chart.cleanUp(el);
   }
 
   render() {
