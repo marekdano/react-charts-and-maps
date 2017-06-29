@@ -66,7 +66,7 @@ class App extends Component {
     if (this.state.type === 'd3')
       chart = <ChartD3 data={this.state.data} title={this.state.title} />
     else if (this.state.type === 'highchart')
-      chart = <ChartHighstock />
+      chart = <ChartHighstock data={this.state.data} title={this.state.title} />
 
     return (
       <div className="App">

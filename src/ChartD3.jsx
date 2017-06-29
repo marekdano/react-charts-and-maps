@@ -46,8 +46,8 @@ class ChartD3 extends Component {
 }
 
 ChartD3.propTypes = {
-    data: PropTypes.array,
-    title: PropTypes.string
+  data: PropTypes.array,
+  title: PropTypes.string
 };
 
 export default ChartD3;
