@@ -12,7 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 0, 
+      selected: 1, 
       data: _.cloneDeep(hubData), 
       title: 'HubSpot Stock in D3',
       type: 'd3'
@@ -25,7 +25,7 @@ class App extends Component {
 
   hubSpotInD3Selected() {
     this.setState({
-      selected: 0,
+      selected: 1,
       data: _.cloneDeep(hubData),
       title: 'HubSpot Stock in D3',
       type: 'd3'
@@ -34,7 +34,7 @@ class App extends Component {
 
   googleInD3Selected() {
     this.setState({
-      selected: 1,
+      selected: 2,
       data: _.cloneDeep(googData),
       title: 'Google Stock in D3',
       type: 'd3'
@@ -44,7 +44,7 @@ class App extends Component {
   hubSpotInHighchartSelected() {
     console.log("hubSpot In Highchart Selected method");
     this.setState({
-      selected: 2,
+      selected: 3,
       data: _.cloneDeep(hubData),
       title: 'HubSpot Stock in Highchart',
       type: 'highchart'
@@ -54,7 +54,7 @@ class App extends Component {
   googleInHighchartSelected() {
     console.log("google In Highchart Selected method");
     this.setState({
-      selected: 3,
+      selected: 4,
       data: _.cloneDeep(googData),
       title: 'Google Stock in Highchart',
       type: 'highchart'
@@ -74,14 +74,15 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Charts and google maps with React.</h2>
         </div>
-        <button type='button' onClick={this.hubSpotInD3Selected}>HubSpot + D3</button>
-        <button type='button' onClick={this.googleInD3Selected}>Google + D3</button>
-
-        <button type='button' onClick={this.hubSpotInHighchartSelected}>HubSpot + Highchart</button>
-        <button type='button' onClick={this.googleInHighchartSelected}>Google + Highchart</button>
+        <div className="nav">
+          <button type='button' className={"btn btn-d3 " + (this.state.selected === 1 ? 'active' : '')} onClick={this.hubSpotInD3Selected}>HubSpot + D3</button>
+          <button type='button' className={"btn btn-d3 " + (this.state.selected === 2 ? 'active' : '')} onClick={this.googleInD3Selected}>Google + D3</button>
+          <button type='button' className={"btn btn-highchart " + (this.state.selected === 3 ? 'active' : '')} onClick={this.hubSpotInHighchartSelected}>HubSpot + Highchart</button>
+          <button type='button' className={"btn btn-highchart " + (this.state.selected === 4 ? 'active' : '')} onClick={this.googleInHighchartSelected}>Google + Highchart</button>
+          <button type='button' className="btn btn-gmaps">Places on GMaps</button>
+        </div>
 
         {chart}
-        
         
       </div>
     );

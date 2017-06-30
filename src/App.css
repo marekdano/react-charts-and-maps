@@ -1,8 +1,32 @@
 
-.chart {
-  margin-top: 2rem;
+.nav {
+  margin: 2em auto;
+  display: inline-block;
 }
 
+.nav .btn {
+  margin: 0 3px;
+  border: 1px solid #ececec;
+  border-radius: 3px;
+  color: #ffffff;
+  outline: none;
+}
+
+.nav .btn-d3 {
+  background: #F37753;
+}
+
+.nav .btn-d3:focus, .nav .btn-d3:hover, .nav .btn-d3.active {
+  background: #C65C4F;
+}
+
+.nav .btn-highchart {
+  background: #508CC8;
+}
+
+.nav .btn-highchart:focus, .nav .btn-highchart:hover, .nav .btn-highchart.active {
+  background: #3F51B5;
+}
 
 /* Default style */
 
@@ -12,12 +36,12 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 50px;
 }
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 100px;
   padding: 20px;
   color: white;
 }
