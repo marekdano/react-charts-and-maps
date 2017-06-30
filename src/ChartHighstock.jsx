@@ -1,12 +1,7 @@
 
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-//import highstock from './highstock.js';
 import * as Highcharts from 'highcharts/highstock';
-import aapl from './data/aapl';
-import * as _ from 'lodash';
-
 
 class ChartHighstock extends Component {
 	
@@ -14,9 +9,20 @@ class ChartHighstock extends Component {
 		this.createChart();
 	}
 
+	componentDidUpdate() {
+    this.createChart();
+  }
+
 	createChart() {
-		console.log("Highcharts", Highcharts);
-		let data = [];
+		let formatData = [];
+		formatData = this.props.data.map(obj => {
+			const date = obj['Date'].split("/");
+			const dateInSeconds = new Date(`20${date[2]}`, +date[1] - 1, date[0]).getTime();
+			return [dateInSeconds, obj['Close']];
+		}).reverse();
+
+		console.log("Data formatted", formatData);
+
 		Highcharts.stockChart('chart', {
         rangeSelector: {
         	selected: 1
@@ -25,10 +31,10 @@ class ChartHighstock extends Component {
         title: {
           text: this.props.title
         },
-				turboThreshold: 1000000,
+				
         series: [{
-            name: 'AAPL',
-            data: aapl,
+            name: '',
+            data: formatData,
             tooltip: {
               valueDecimals: 2
             }

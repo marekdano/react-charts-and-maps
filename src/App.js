@@ -45,7 +45,7 @@ class App extends Component {
     console.log("hubSpot In Highchart Selected method");
     this.setState({
       selected: 2,
-      data: _.cloneDeep(googData),
+      data: _.cloneDeep(hubData),
       title: 'HubSpot Stock in Highchart',
       type: 'highchart'
     });
