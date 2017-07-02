@@ -1,5 +1,5 @@
 
-const googData = [
+const googStock = [
   {
     'Date': '17/02/17',
     'Close': 828.070007
@@ -5034,4 +5034,4 @@ const googData = [
   }
 ];
 
-export default googData;
+export default googStock;

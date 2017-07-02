@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import hubData from './data/hubData';
-import googData from './data/googData';
+import * as hubData from './data/hubStock';
+import * as googData from './data/googStock';
 import ChartD3 from './ChartD3.jsx';
 import ChartHighstock from './ChartHighstock';
 import Map from './Map';
