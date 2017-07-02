@@ -1,4 +1,9 @@
 
+.container {
+  margin: 0 15px;
+  padding: 5px;
+}
+
 .nav {
   margin: 2em auto;
   display: inline-block;
