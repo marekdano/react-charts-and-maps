@@ -1,5 +1,5 @@
 
-const hubStock = [
+ export const hubStock = [
   {
     'Date': '17/02/17',
     'Close': 60
@@ -2381,5 +2381,3 @@ const hubStock = [
     'Close': 30.1
   }
 ];
-
-export default hubStock;
