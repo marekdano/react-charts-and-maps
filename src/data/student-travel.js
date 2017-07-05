@@ -1,6 +1,6 @@
 
 const studentTravel = {
-   "result":[
+   "result": [
       {
          "id":"40b5a523dfea62e9d4c711061398a7a3",
          "name":"103 Fisher St, NY",
