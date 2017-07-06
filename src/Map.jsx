@@ -1,25 +1,27 @@
-
+/*global google*/
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import studentTravel from './data/student-travel';
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { withGoogleMap, GoogleMap, Marker, Polyline } from "react-google-maps";
 
 
 const InitialMap = withGoogleMap(props => {
 	return (
 		<GoogleMap
 			defaultZoom={12}
-			defaultCenter={{ lat: 42.920, lng: -78.801 }}>
+			defaultCenter={props.center}>
 
 			{props.markers.map((marker, index) => (
 				<Marker
 					key={index}
 					{...marker}
 					onClick={() => props.onMarkerClick(marker)}
-				>
-				</Marker>
+				/>
 			))}
+			<Polyline
+				path={props.coords}
+			/>
 		</GoogleMap>
 	)
 });
@@ -32,8 +34,15 @@ class Map extends Component {
 				return {
 					position: { lat: place.lat, lng: place.lng }
 				}
+			}),
+			coords: studentTravel.result.map(place => {
+				return {
+					lat: place.lat, 
+					lng: place.lng
+				}
 			})
-		}
+		};
+
 		this.handleMarkerClick = this.handleMarkerClick.bind(this);
 	}
 	
@@ -42,8 +51,19 @@ class Map extends Component {
 		console.log("click on this marker", targetMarker);
 	} 
 	
+	minMaxLatAndLng(studentTravel) {
+		const listOfLat = studentTravel.map(obj => obj.lat);
+		const listOfLng = studentTravel.map(obj => obj.lng);
+		const lat = (Math.min(...listOfLat) + Math.max(...listOfLat)) / 2;
+		const lng = (Math.min(...listOfLng) + Math.max(...listOfLng)) / 2;
+	
+		return { lat, lng }	
+	}
+	
 	render() {
 		console.log("markers", this.state.markers);
+		const mapCenter = this.minMaxLatAndLng(studentTravel.result);
+
 		return (
 			<div className="map">
 				<InitialMap
@@ -53,7 +73,9 @@ class Map extends Component {
 					mapElement={
 						<div style={{ height: `100%` }} />
 					}
+					center={mapCenter}
 					markers={this.state.markers}
+					coords={this.state.coords}
 					onMarkerClick={this.handleMarkerClick}
 				/>
 			</div>
