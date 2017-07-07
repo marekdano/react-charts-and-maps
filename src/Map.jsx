@@ -3,21 +3,32 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import studentTravel from './data/student-travel';
-import { withGoogleMap, GoogleMap, Marker, Polyline } from "react-google-maps";
+import { withGoogleMap, GoogleMap, Marker, Polyline, InfoWindow } from "react-google-maps";
 
 
 const InitialMap = withGoogleMap(props => {
 	return (
 		<GoogleMap
 			defaultZoom={12}
-			defaultCenter={props.center}>
+			defaultCenter={props.center}
+			mapTypeId='roadmap'
+		>
 
 			{props.markers.map((marker, index) => (
 				<Marker
 					key={index}
-					{...marker}
+					position={marker.position}
 					onClick={() => props.onMarkerClick(marker)}
-				/>
+				>
+					{marker.showInfo && (
+						<InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
+							<div id="info-window">
+								<div>Students: {marker.infoContent.studentsCount}</div>
+								<div>Routes: {marker.infoContent.routesCount}</div>
+							</div>
+						</InfoWindow>
+					)}
+				</Marker>
 			))}
 			<Polyline
 				path={props.coords}
@@ -32,9 +43,14 @@ class Map extends Component {
 		this.state = {
 			markers: studentTravel.result.map(place => {
 				return {
-					position: { lat: place.lat, lng: place.lng }
+					position: { lat: place.lat, lng: place.lng },
+					showInfo: false,
+					infoContent: {
+						studentsCount: place.students_count,
+						routesCount: place.routes_count 
+					}
 				}
-			}),
+			}),    
 			coords: studentTravel.result.map(place => {
 				return {
 					lat: place.lat, 
@@ -44,12 +60,37 @@ class Map extends Component {
 		};
 
 		this.handleMarkerClick = this.handleMarkerClick.bind(this);
+		this.handleMarkerClose = this.handleMarkerClose.bind(this);
 	}
-	
 	
 	handleMarkerClick(targetMarker) {
 		console.log("click on this marker", targetMarker);
-	} 
+    this.setState({
+      markers: this.state.markers.map(marker => {
+        if (marker === targetMarker) {
+          return {
+            ...marker,
+            showInfo: true,
+          };
+        }
+        return marker;
+      }),
+    });
+  }
+
+	handleMarkerClose(targetMarker) {
+    this.setState({
+      markers: this.state.markers.map(marker => {
+        if (marker === targetMarker) {
+          return {
+            ...marker,
+            showInfo: false,
+          };
+        }
+        return marker;
+      }),
+    });
+  }
 	
 	minMaxLatAndLng(studentTravel) {
 		const listOfLat = studentTravel.map(obj => obj.lat);
@@ -77,6 +118,7 @@ class Map extends Component {
 					markers={this.state.markers}
 					coords={this.state.coords}
 					onMarkerClick={this.handleMarkerClick}
+        	onMarkerClose={this.handleMarkerClose}
 				/>
 			</div>
 		

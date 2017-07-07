@@ -38,6 +38,13 @@
   height: 500px;
   position: relative;
 }
+
+#info-window {
+  margin: 1rem .6rem;
+  text-align: left;
+}
+
+
 /* Default style */
 
 .App {
