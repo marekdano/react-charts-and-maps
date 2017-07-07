@@ -19,12 +19,22 @@ const InitialMap = withGoogleMap(props => {
 					key={index}
 					position={marker.position}
 					onClick={() => props.onMarkerClick(marker)}
+					onMouseOver={() => props.onMarkerHover(marker)}
+					onMouseOut={() => props.onMarkerClose(marker)}
 				>
 					{marker.showInfo && (
 						<InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
 							<div id="info-window">
 								<div>Students: {marker.infoContent.studentsCount}</div>
 								<div>Routes: {marker.infoContent.routesCount}</div>
+							</div>
+						</InfoWindow>
+					)}
+
+					{marker.hover && (
+						<InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
+							<div id="info-window">
+								<div>Bus stop: <em>{marker.infoContent.name}</em></div>
 							</div>
 						</InfoWindow>
 					)}
@@ -46,6 +56,7 @@ class Map extends Component {
 					position: { lat: place.lat, lng: place.lng },
 					showInfo: false,
 					infoContent: {
+						name: place.name,
 						studentsCount: place.students_count,
 						routesCount: place.routes_count 
 					}
@@ -61,6 +72,7 @@ class Map extends Component {
 
 		this.handleMarkerClick = this.handleMarkerClick.bind(this);
 		this.handleMarkerClose = this.handleMarkerClose.bind(this);
+		this.handleMarkerHover = this.handleMarkerHover.bind(this);
 	}
 	
 	handleMarkerClick(targetMarker) {
@@ -85,12 +97,28 @@ class Map extends Component {
           return {
             ...marker,
             showInfo: false,
+						hover: false
           };
         }
         return marker;
       }),
     });
   }
+
+	handleMarkerHover(targetMarker) {
+		console.log("Marker has been hovered.")
+		this.setState({
+      markers: this.state.markers.map(marker => {
+        if (marker === targetMarker) {
+          return {
+            ...marker,
+            hover: true
+          };
+        }
+        return marker;
+      }),
+    });
+	}
 	
 	minMaxLatAndLng(studentTravel) {
 		const listOfLat = studentTravel.map(obj => obj.lat);
@@ -119,6 +147,7 @@ class Map extends Component {
 					coords={this.state.coords}
 					onMarkerClick={this.handleMarkerClick}
         	onMarkerClose={this.handleMarkerClose}
+					onMarkerHover={this.handleMarkerHover}
 				/>
 			</div>
 		
