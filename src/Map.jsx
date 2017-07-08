@@ -20,7 +20,7 @@ const InitialMap = withGoogleMap(props => {
 					position={marker.position}
 					onClick={() => props.onMarkerClick(marker)}
 					onMouseOver={() => props.onMarkerHover(marker)}
-					onMouseOut={() => props.onMarkerClose(marker)}
+					onMouseOut={() => props.onMarkerHide(marker)}
 				>
 					{marker.showInfo && (
 						<InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
@@ -32,7 +32,8 @@ const InitialMap = withGoogleMap(props => {
 					)}
 
 					{marker.hover && (
-						<InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
+						<InfoWindow
+							onCloseClick={() => props.onMarkerClose(marker)}>
 							<div id="info-window">
 								<div>Bus stop: <em>{marker.infoContent.name}</em></div>
 							</div>
@@ -73,6 +74,7 @@ class Map extends Component {
 		this.handleMarkerClick = this.handleMarkerClick.bind(this);
 		this.handleMarkerClose = this.handleMarkerClose.bind(this);
 		this.handleMarkerHover = this.handleMarkerHover.bind(this);
+		this.handleMarkerHide = this.handleMarkerHide.bind(this);
 	}
 	
 	handleMarkerClick(targetMarker) {
@@ -83,6 +85,7 @@ class Map extends Component {
           return {
             ...marker,
             showInfo: true,
+						hover: false
           };
         }
         return marker;
@@ -119,6 +122,21 @@ class Map extends Component {
       }),
     });
 	}
+
+	handleMarkerHide(targetMarker) {
+		console.log("info window has been removed.")
+		this.setState({
+      markers: this.state.markers.map(marker => {
+        if (marker === targetMarker) {
+          return {
+            ...marker,
+            hover: false
+          };
+        }
+        return marker;
+      }),
+    });
+	}
 	
 	minMaxLatAndLng(studentTravel) {
 		const listOfLat = studentTravel.map(obj => obj.lat);
@@ -148,6 +166,7 @@ class Map extends Component {
 					onMarkerClick={this.handleMarkerClick}
         	onMarkerClose={this.handleMarkerClose}
 					onMarkerHover={this.handleMarkerHover}
+					onMarkerHide={this.handleMarkerHide}
 				/>
 			</div>
 		
