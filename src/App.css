@@ -39,6 +39,21 @@
   position: relative;
 }
 
+.btn-hide-map {
+  position: absolute;
+  top: 440px;
+  right: 60px;
+  cursor: pointer;
+  background: grey;
+  color: white;
+  padding: .6rem;
+  z-index: 10;
+}
+
+.btn-hide-map:hover {
+  background: darkgrey;
+}
+
 #info-window {
   margin: 1rem .6rem;
   text-align: left;

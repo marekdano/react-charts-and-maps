@@ -11,7 +11,14 @@ const InitialMap = withGoogleMap(props => {
 		<GoogleMap
 			defaultZoom={12}
 			defaultCenter={props.center}
-			mapTypeId='roadmap'
+			defaultOptions={{
+				scrollwheel: false,
+				mapTypeControl: false,
+      	draggable: true,
+      	scaleControl: false,
+				mapTypeId: 'roadmap'
+			}}
+			
 		>
 
 			{props.markers.map((marker, index) => (
@@ -68,13 +75,15 @@ class Map extends Component {
 					lat: place.lat, 
 					lng: place.lng
 				}
-			})
+			}),
+			showMap: true
 		};
 
 		this.handleMarkerClick = this.handleMarkerClick.bind(this);
 		this.handleMarkerClose = this.handleMarkerClose.bind(this);
 		this.handleMarkerHover = this.handleMarkerHover.bind(this);
 		this.handleMarkerHide = this.handleMarkerHide.bind(this);
+		this.handleHiddenButtonClick = this.handleHiddenButtonClick.bind(this);
 	}
 	
 	handleMarkerClick(targetMarker) {
@@ -137,6 +146,10 @@ class Map extends Component {
       }),
     });
 	}
+
+	handleHiddenButtonClick() {
+		this.setState({ showMap:false });
+	}
 	
 	minMaxLatAndLng(studentTravel) {
 		const listOfLat = studentTravel.map(obj => obj.lat);
@@ -148,28 +161,31 @@ class Map extends Component {
 	}
 	
 	render() {
-		console.log("markers", this.state.markers);
 		const mapCenter = this.minMaxLatAndLng(studentTravel.result);
 
 		return (
-			<div className="map">
-				<InitialMap
-					containerElement={
-						<div style={{ height: `100%` }} />
-					}
-					mapElement={
-						<div style={{ height: `100%` }} />
-					}
-					center={mapCenter}
-					markers={this.state.markers}
-					coords={this.state.coords}
-					onMarkerClick={this.handleMarkerClick}
-        	onMarkerClose={this.handleMarkerClose}
-					onMarkerHover={this.handleMarkerHover}
-					onMarkerHide={this.handleMarkerHide}
-				/>
-			</div>
-		
+			<div>
+				{this.state.showMap &&
+					<div className="map">
+						<a className="btn-hide-map" onClick={this.handleHiddenButtonClick}>Hide map</a>
+						<InitialMap
+							containerElement={
+								<div style={{ height: `100%` }} />
+							}
+							mapElement={
+								<div style={{ height: `100%` }} />
+							}
+							center={mapCenter}
+							markers={this.state.markers}
+							coords={this.state.coords}
+							onMarkerClick={this.handleMarkerClick}
+							onMarkerClose={this.handleMarkerClose}
+							onMarkerHover={this.handleMarkerHover}
+							onMarkerHide={this.handleMarkerHide}
+						/>
+					</div>
+				}
+			</div>	
 		);
 	}
 }
