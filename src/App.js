@@ -5,7 +5,7 @@ import { hubStock as hubData } from './data/hubStock';
 import { googStock as googData } from './data/googStock';
 import ChartD3 from './ChartD3.jsx';
 import ChartHighstock from './ChartHighstock';
-import Map from './Map';
+import MapWithStops from './MapWithStops';
 import * as _ from 'lodash';
 import './App.css';
 
@@ -79,7 +79,7 @@ class App extends Component {
     else if (this.state.type === 'highchart')
       content = <ChartHighstock data={this.state.data} title={this.state.title} />;
     else if (this.state.type === 'gmaps') {
-      content = <Map />;
+      content = <MapWithStops />;
     }
 
     return (

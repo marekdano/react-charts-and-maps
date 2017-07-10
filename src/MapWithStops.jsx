@@ -55,7 +55,7 @@ const InitialMap = withGoogleMap(props => {
 	)
 });
 
-class Map extends Component {
+class MapWithStops extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -190,4 +190,4 @@ class Map extends Component {
 	}
 }
 
-export default Map;
+export default MapWithStops;
