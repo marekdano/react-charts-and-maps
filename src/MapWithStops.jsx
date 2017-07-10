@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import studentTravel from './data/student-travel';
+import TableOfBusStops from './TableOfBusStops';
 import { withGoogleMap, GoogleMap, Marker, Polyline, InfoWindow } from "react-google-maps";
 
 
@@ -185,6 +186,7 @@ class MapWithStops extends Component {
 						/>
 					</div>
 				}
+				<TableOfBusStops />
 			</div>	
 		);
 	}
