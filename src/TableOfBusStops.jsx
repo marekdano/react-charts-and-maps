@@ -8,11 +8,14 @@ class TableOfBusStops extends Component {
   }
 
 	render() {
+		console.log("Stops data", this.props.stopsData);
 		return (
 			<div> TableOfBusStops works!</div>
 		)
 	}
 }
+
+
 
 export default TableOfBusStops;
   

@@ -186,7 +186,7 @@ class MapWithStops extends Component {
 						/>
 					</div>
 				}
-				<TableOfBusStops />
+				<TableOfBusStops stopsData={studentTravel.result}/>
 			</div>	
 		);
 	}
