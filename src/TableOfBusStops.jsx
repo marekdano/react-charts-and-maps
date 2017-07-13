@@ -12,29 +12,31 @@ class TableOfBusStops extends Component {
 		const stopsData = this.props.stopsData;
 		const tableBody = stopsData && stopsData.map(stop => {
 			return (
-				<tr>
-					<th>{stop.name}</th>
-					<th>{stop.students_count}</th>
-					<th>{stop.users_count}</th>
-					<th>{stop.routes_count}</th>
-				</tr>
+				<div key={stop.id} className="row">
+					<div className="cell">{stop.name}</div>
+					<div className="cell">{stop.students_count}</div>
+					<div className="cell">{stop.users_count}</div>
+					<div className="cell">{stop.routes_count}</div>
+				</div>
 			)
 		})
 		return (
 			<div>
-				<table>
-					<tr id="header">
-						<th>Stops table</th> 
-					</tr>
-					<tr>
-						<th>Stop Name</th>
-						<th>No Students</th>
-						<th>No Users</th>
-						<th>No Routes</th>
-					</tr>
+				<div className="table">
+					<div className="row header">
+						<div className="cell">Stops table</div>
+						<div className="cell"></div>
+						<div className="cell"></div>
+						<div className="cell"></div> 
+					</div>
+					<div className="row header">
+						<div className="cell" >Stop Name</div>
+						<div className="cell">No Students</div>
+						<div className="cell">No Users</div>
+						<div className="cell">No Routes</div>
+					</div>
 					{tableBody}
-				</table>
-
+				</div>
 			</div>
 		)
 	}

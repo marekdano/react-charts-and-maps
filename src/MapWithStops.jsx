@@ -158,7 +158,7 @@ class MapWithStops extends Component {
 		const lat = (Math.min(...listOfLat) + Math.max(...listOfLat)) / 2;
 		const lng = (Math.min(...listOfLng) + Math.max(...listOfLng)) / 2;
 	
-		return { lat, lng }	
+		return {lat, lng}	
 	}
 	
 	render() {
