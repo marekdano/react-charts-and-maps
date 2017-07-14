@@ -50,6 +50,15 @@
   z-index: 10;
 }
 
+.btn-show-map {
+  display: block;
+  width: 5rem;
+  cursor: pointer;
+  background: grey;
+  color: white;
+  padding: .6rem;
+}
+
 .btn-hide-map:hover {
   background: darkgrey;
 }

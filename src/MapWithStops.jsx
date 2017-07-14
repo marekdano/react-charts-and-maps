@@ -84,7 +84,8 @@ class MapWithStops extends Component {
 		this.handleMarkerClose = this.handleMarkerClose.bind(this);
 		this.handleMarkerHover = this.handleMarkerHover.bind(this);
 		this.handleMarkerHide = this.handleMarkerHide.bind(this);
-		this.handleHiddenButtonClick = this.handleHiddenButtonClick.bind(this);
+		this.handleHideMapClick = this.handleHideMapClick.bind(this);
+		this.handleShowMapClick = this.handleShowMapClick.bind(this);
 	}
 	
 	handleMarkerClick(targetMarker) {
@@ -148,8 +149,12 @@ class MapWithStops extends Component {
     });
 	}
 
-	handleHiddenButtonClick() {
-		this.setState({ showMap:false });
+	handleHideMapClick() {
+		this.setState({ showMap: false });
+	}
+
+	handleShowMapClick() {
+		this.setState({ showMap: true })
 	}
 	
 	minMaxLatAndLng(studentTravel) {
@@ -166,9 +171,12 @@ class MapWithStops extends Component {
 
 		return (
 			<div>
+				{!this.state.showMap && 
+					<a className="btn-show-map" onClick={this.handleShowMapClick}>Show map</a>
+				}
 				{this.state.showMap &&
 					<div className="map">
-						<a className="btn-hide-map" onClick={this.handleHiddenButtonClick}>Hide map</a>
+						<a className="btn-hide-map" onClick={this.handleHideMapClick}>Hide map</a>
 						<InitialMap
 							containerElement={
 								<div style={{ height: `100%` }} />
