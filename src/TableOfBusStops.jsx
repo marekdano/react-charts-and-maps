@@ -23,8 +23,8 @@ class TableOfBusStops extends Component {
 		return (
 			<div>
 				<div className="table">
-					<div className="row header">
-						<div className="cell">Stops table</div>
+					<div className="row">
+						<div className="cell title">Stops table</div>
 						<div className="cell"></div>
 						<div className="cell"></div>
 						<div className="cell"></div> 

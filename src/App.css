@@ -33,6 +33,14 @@
   background: #3F51B5;
 }
 
+.nav .btn-gmaps {
+  background: #D23C2F;
+}
+
+.nav .btn-gmaps:focus, .nav .btn-gmaps:hover, .nav .btn-gmaps.active {
+  background: #EA4335;
+}
+
 .map {
   width: 100%;
   height: 500px;
@@ -116,6 +124,18 @@
     display: block;
   }
 }
+
+.cell.title {
+  padding: 0.8rem 0 0.7rem 0.8rem;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 580px) {
+  .cell.title {
+    padding: 0.8rem 0 0 0.8rem;
+  }
+}
+
 
 /* Default style */
 
