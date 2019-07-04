@@ -4,16 +4,16 @@
   "private": true,
   "homepage": "https://marekdano.github.io/react-charts-and-maps",
   "devDependencies": {
-    "gh-pages": "^1.0.0",
-    "react-scripts": "1.0.7"
+    "gh-pages": "^2.0.1",
+    "react-scripts": "^3.0.1"
   },
   "dependencies": {
-    "d3": "^4.9.1",
-    "highcharts": "^5.0.12",
-    "lodash": "^4.17.4",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-google-maps": "^7.0.0"
+    "d3": "^4.13.0",
+    "highcharts": "^7.1.2",
+    "lodash": "^4.17.11",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-google-maps": "^9.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,5 +22,17 @@
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
