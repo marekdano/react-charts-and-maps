@@ -44,7 +44,6 @@ class App extends Component {
   }
 
   hubSpotInHighchartSelected() {
-    console.log("hubSpot In Highchart Selected method");
     this.setState({
       selected: 3,
       data: _.cloneDeep(hubData),
@@ -54,7 +53,6 @@ class App extends Component {
   }
 
   googleInHighchartSelected() {
-    console.log("google In Highchart Selected method");
     this.setState({
       selected: 4,
       data: _.cloneDeep(googData),
@@ -64,7 +62,6 @@ class App extends Component {
   }
 
   gmapsSelected() {
-    console.log("gmaps in Selected method");
     this.setState({
       selected: 5,
       title: 'Places on Google Maps',

@@ -21,8 +21,6 @@ class ChartHighstock extends Component {
 			return [dateInSeconds, obj['Close']];
 		}).reverse();
 
-		console.log("Data formatted", formatData);
-
 		Highcharts.stockChart('chart', {
         rangeSelector: {
         	selected: 1

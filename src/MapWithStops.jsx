@@ -1,11 +1,8 @@
-/*global google*/
+
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import studentTravel from './data/student-travel';
 import TableOfBusStops from './TableOfBusStops';
 import { withGoogleMap, GoogleMap, Marker, Polyline, InfoWindow } from "react-google-maps";
-
 
 const InitialMap = withGoogleMap(props => {
 	return (
@@ -89,7 +86,6 @@ class MapWithStops extends Component {
 	}
 	
 	handleMarkerClick(targetMarker) {
-		console.log("click on this marker", targetMarker);
     this.setState({
       markers: this.state.markers.map(marker => {
         if (marker === targetMarker) {
@@ -120,7 +116,6 @@ class MapWithStops extends Component {
   }
 
 	handleMarkerHover(targetMarker) {
-		console.log("Marker has been hovered.")
 		this.setState({
       markers: this.state.markers.map(marker => {
         if (marker === targetMarker) {
@@ -135,7 +130,6 @@ class MapWithStops extends Component {
 	}
 
 	handleMarkerHide(targetMarker) {
-		console.log("info window has been removed.")
 		this.setState({
       markers: this.state.markers.map(marker => {
         if (marker === targetMarker) {
@@ -172,11 +166,11 @@ class MapWithStops extends Component {
 		return (
 			<div>
 				{!this.state.showMap && 
-					<a className="btn-show-map" onClick={this.handleShowMapClick}>Show map</a>
+					<button className="btn-show-map" onClick={this.handleShowMapClick}>Show map</button>
 				}
 				{this.state.showMap &&
 					<div className="map">
-						<a className="btn-hide-map" onClick={this.handleHideMapClick}>Hide map</a>
+						<button className="btn-hide-map" onClick={this.handleHideMapClick}>Hide map</button>
 						<InitialMap
 							containerElement={
 								<div style={{ height: `100%` }} />

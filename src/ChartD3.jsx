@@ -9,8 +9,7 @@ class ChartD3 extends Component {
 
   componentDidMount() {
     let el = ReactDOM.findDOMNode(this);
-		console.log("el in componentDidMount", el);
-
+	
 		chart.create(el, {
 			width: 960,
 			height: 500
@@ -34,7 +33,6 @@ class ChartD3 extends Component {
 
   componentWillUnmount() {
     let el = ReactDOM.findDOMNode(this);
-		console.log("el in componentWillUnmount", el);
     chart.cleanUp(el);
   }
 
